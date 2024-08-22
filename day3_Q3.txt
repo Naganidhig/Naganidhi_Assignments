@@ -1,0 +1,138 @@
+public class Student {
+    private int id;
+    private String name;
+    private String city;
+    private int marks1;
+    private int marks2;
+    private int marks3;
+    private float feePerMonth;
+    private boolean eligibleForDiscount;
+
+    // Getters and Setters
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCity() {
+        return this.city;
+    }
+
+    public void setMarks(int marks1, int marks2, int marks3) {
+        this.marks1 = marks1;
+        this.marks2 = marks2;
+        this.marks3 = marks3;
+    }
+
+    public float getFeePerMonth() {
+        return this.feePerMonth;
+    }
+
+    public void setFeePerMonth(float fee) {
+        this.feePerMonth = fee;
+    }
+
+    public void setEligibleForDiscount(boolean eligibleForDiscount) {
+        this.eligibleForDiscount = eligibleForDiscount;
+    }
+
+    public boolean isEligibleForDiscount() {
+        return this.eligibleForDiscount;
+    }
+
+    public int getAnnualFee() {
+        return (int) feePerMonth * 12;
+    }
+
+    public int getTotalMarks() {
+        return marks1 + marks2 + marks3;
+    }
+
+    public double getAverage() {
+        return (marks1 + marks2 + marks3) / 3.0;
+    }
+
+    public String getResult() {
+        if(marks1 >= 60 && marks2 >= 60 && marks3 >= 60) {
+            return "Pass";
+        } else {
+            return "Fail";
+        }
+    }
+}
+
+public class TestMain {
+    
+    public static void main(String[] args) {
+
+        // create 3 student objects
+        Student student1 = new Student();
+        Student student2 = new Student();
+        Student student3 = new Student();
+        
+        // populate students by calling setters
+        student1.setId(1);
+        student1.setName("John");
+        student1.setMarks(65, 75, 85);
+        student1.setFeePerMonth(500);
+        student1.setEligibleForDiscount(true);
+        
+        student2.setId(2);
+        student2.setName("Alice");
+        student2.setMarks(70, 80, 85);
+        student2.setFeePerMonth(600);
+        student2.setEligibleForDiscount(false);
+        
+        student3.setId(3);
+        student3.setName("Bob");
+        student3.setMarks(80, 90, 85);
+        student3.setFeePerMonth(650);
+        student3.setEligibleForDiscount(true);
+        
+        // array of students to easily handle them
+        Student[] students = {student1, student2, student3};
+        
+        // determine student with the highest total mark
+        Student maxMarksStudent = students[0];
+        for (Student s : students) {
+            if (s.getTotalMarks() > maxMarksStudent.getTotalMarks()) {
+                maxMarksStudent = s;
+            }
+        }
+        System.out.println("Student with the highest total: " + maxMarksStudent.getName());
+        
+        // determine student with the lowest fee
+        Student minFeeStudent = students[0];
+        for (Student s : students) {
+            if (s.getFeePerMonth() < minFeeStudent.getFeePerMonth()) {
+                minFeeStudent = s;
+            }
+        }
+        System.out.println("Student with the lowest monthly fee: " + minFeeStudent.getName() + ", Fee: " + minFeeStudent.getFeePerMonth());
+
+        // print out student information
+        for (Student s : students) {
+            System.out.println("Name: " + s.getName() + ", Total: " + s.getTotalMarks() + ", Average: " + s.getAverage() + ", Result: " + s.getResult());
+            if (s.isEligibleForDiscount()) {
+                System.out.println("Discount Voucher is applicable");
+            } else {
+                System.out.println("Discount Voucher is not applicable");
+            }
+        }
+    }
+}
