@@ -1,0 +1,54 @@
+class Room {
+    String id;
+    boolean hasZoom;
+}
+
+class Meeting {
+    String employeeId;
+    String date;
+    String time;
+    int duration;
+    Room room;
+
+    void print(){
+        System.out.println("Employee Id: " + employeeId + ", Date: " + date + ", Time: " + time + ", Duration: " + duration + ", Room Id: " + room.id + ", Has Zoom: " + room.hasZoom);
+    }
+}
+
+class CompanyApplication {
+    
+    static Meeting[] meetings = new Meeting[10]; 
+    static int count = 0; 
+    
+    public static void bookMeeting(String employeeId, String date, String time, int duration, Room room){
+        Meeting meeting = new Meeting();
+        meeting.employeeId = employeeId;
+        meeting.date = date;
+        meeting.time = time;
+        meeting.duration = duration;
+        meeting.room = room;
+        meetings[count] = meeting;
+        count++;
+    }
+
+    public static void getMeetings(String date) {
+        for (int i = 0; i < count; i++) {
+            if (meetings[i].date.equals(date)) {
+                meetings[i].print();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        // create rooms
+        Room room1 = new Room();
+        room1.id = "Room1";
+        room1.hasZoom = true;
+
+        // book meetings
+        bookMeeting("emp1", "04/18/2022", "10:00", 2, room1);
+
+        // get meetings
+        getMeetings("04/18/2022");
+    }
+}
