@@ -1,24 +1,24 @@
-class Room {
-    String id;
-    boolean hasZoom;
-}
-
-class Meeting {
-    String employeeId;
-    String date;
-    String time;
-    int duration;
-    Room room;
-
-    void print(){
-        System.out.println("Employee Id: " + employeeId + ", Date: " + date + ", Time: " + time + ", Duration: " + duration + ", Room Id: " + room.id + ", Has Zoom: " + room.hasZoom);
-    }
-}
-
-class CompanyApplication {
+public class CompanyApplication {
     
-    static Meeting[] meetings = new Meeting[10]; 
-    static int count = 0; 
+    static class Room {
+        String id;
+        boolean hasZoom;
+    }
+    
+    static class Meeting {
+        String employeeId;
+        String date;
+        String time;
+        int duration;
+        Room room;
+
+        void print(){
+            System.out.println("Employee Id: " + employeeId + ", Date: " + date + ", Time: " + time + ", Duration: " + duration + ", Room Id: " + room.id + ", Has Zoom: " + room.hasZoom);
+        }
+    }
+    
+    static Meeting[] meetings = new Meeting[10]; // Assuming we can have at most 10 meetings for simplicity
+    static int count = 0; // Keep count of meetings
     
     public static void bookMeeting(String employeeId, String date, String time, int duration, Room room){
         Meeting meeting = new Meeting();
